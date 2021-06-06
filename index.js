@@ -13,8 +13,14 @@ const Intern = require('./lib/Intern');
 const { buildFailureTestResult } = require('@jest/test-result');
 const { findSourceMap } = require('module');
 
+// Path
+const DIST = path.resolve(__dirname, 'dist');
+const Outpath = path.join(DIST, 'index.html');
+
+const render = require('./src/template');
+
 const EmplArr = [];
-const EmpId = [];
+// const EmpId = [];
 
 function EmployeeQuestions() {
     inquirer.prompt([{
