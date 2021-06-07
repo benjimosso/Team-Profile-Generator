@@ -20,27 +20,27 @@ const Outpath = path.join(DIST, 'index.html');
 const render = require('./src/template');
 
 const EmplArr = [];
-// const EmpId = [];
+
 
 function EmployeeQuestions() {
     inquirer.prompt([{
             type: 'input',
-            message: 'Please enter the name of the employee you want to add.',
+            message: 'Please enter the name of the employee you want to add: ',
             name: 'empname',
         },
         {
             type: 'input',
-            message: 'Please enter their ID number.',
+            message: 'Please enter their ID number: ',
             name: 'idN'
         },
         {
             type: 'input',
-            message: 'Please enter their email address.',
+            message: 'Please enter their email address: ',
             name: 'emailadd'
         },
         {
             type: 'list',
-            message: 'What is the employee role?',
+            message: 'What is the employee role?: ',
             name: 'role',
             choices: ['Manager', 'Engineer', 'Intern']
         }
@@ -70,7 +70,6 @@ function EmployeeQuestions() {
                 EmployeeQuestions()
             } else {
                 BuildSite();
-                console.log('Site Rendered.')
             }
         })
     }
@@ -93,7 +92,6 @@ function EmployeeQuestions() {
                 EmployeeQuestions()
             } else {
                 BuildSite();
-                console.log('Site Rendered.')
             }
         })
     }
@@ -116,13 +114,16 @@ function EmployeeQuestions() {
                 EmployeeQuestions()
             } else {
                 BuildSite();
-                console.log('Site Rendered.')
             }
         })
     }
     // console.log(EmplArr)
     function BuildSite() {
-        console.log(EmplArr)
+        if (!fs.existsSync(DIST)) {
+            fs.mkdirSync(DIST)
+        }
+        console.log('Site Rendered')
+        fs.writeFileSync(Outpath, render(EmplArr), 'utf-8')
     }
 };
 
