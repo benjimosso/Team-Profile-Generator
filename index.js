@@ -21,7 +21,7 @@ const render = require('./src/template');
 
 const EmplArr = [];
 
-
+// function that starts the application
 function EmployeeQuestions() {
     inquirer.prompt([{
             type: 'input',
@@ -31,12 +31,22 @@ function EmployeeQuestions() {
         {
             type: 'input',
             message: 'Please enter their ID number: ',
-            name: 'idN'
+            name: 'idN',
+            validate: function IdValidation(idN) {
+                if (typeof idN == 'string') {
+                    return true
+                } else
+                    return 'Id needs to be a number'
+            }
         },
         {
             type: 'input',
             message: 'Please enter their email address: ',
-            name: 'emailadd'
+            name: 'emailadd',
+            validate: function ValidateEmail(emailadd) {
+                // Method for email validation, a word needs a @ after it, otherwise won't allow the input. 
+                return /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\.,;\s@\"]+\.{0,1})+([^<>()\.,;:\s@\"]{2,}|[\d\.]+))$/.test(emailadd);
+            }
         },
         {
             type: 'list',
@@ -52,6 +62,7 @@ function EmployeeQuestions() {
         } else IntQuestions(answers)
     });
 
+    // if Manager is selected this function fires
     function ManQuestions(employeeAnswers) {
         inquirer.prompt([{
                 type: 'input',
@@ -66,6 +77,7 @@ function EmployeeQuestions() {
         ]).then(function(answers) {
             const newManager = new Manager(employeeAnswers.empname, employeeAnswers.idN, employeeAnswers.emailadd, answers.Officenum)
             EmplArr.push(newManager);
+            // if user decides to add another employee employeequiestions is called again, otherwise we build the site.
             if (answers.Addanother) {
                 EmployeeQuestions()
             } else {
@@ -73,7 +85,7 @@ function EmployeeQuestions() {
             }
         })
     }
-
+    // if Engineer is selected tihs function fires
     function EngQuestions(employeeAnswers) {
         inquirer.prompt([{
                 type: 'input',
@@ -96,6 +108,7 @@ function EmployeeQuestions() {
         })
     }
 
+    // if intern is selected this function fires
     function IntQuestions(employeeAnswers) {
         inquirer.prompt([{
                 type: 'input',
@@ -118,11 +131,13 @@ function EmployeeQuestions() {
         })
     }
     // console.log(EmplArr)
+    // creates html file and folder path in case is not created.
     function BuildSite() {
         if (!fs.existsSync(DIST)) {
             fs.mkdirSync(DIST)
         }
         console.log('Site Rendered')
+            // here we are pushing the information to the html file.
         fs.writeFileSync(Outpath, render(EmplArr), 'utf-8')
     }
 };
