@@ -30,11 +30,11 @@ Video:
 https://drive.google.com/file/d/15x7vFuqlNWIgLd3EBqcS7ZnceOWKjIAg/view?usp=sharing
 
 Screenshots:
-![Screenshot](https://github.com/benjimosso/Team-Profile-Generator/blob/main/images/Screenshot1.PNG)
+![Screenshot](https://github.com/benjimosso/Team-Profile-Generator/blob/main/Images/Screenshot1.PNG)
 
-![Screenshot](https://github.com/benjimosso/Team-Profile-Generator/blob/main/images/Screenshot2.PNG)
+![Screenshot](https://github.com/benjimosso/Team-Profile-Generator/blob/main/Images/Screenshot2.PNG)
 
-![Screenshot](https://github.com/benjimosso/Team-Profile-Generator/blob/main/images/Screenshot3.PNG)
+![Screenshot](https://github.com/benjimosso/Team-Profile-Generator/blob/main/Images/Screenshot3.PNG)
 
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
